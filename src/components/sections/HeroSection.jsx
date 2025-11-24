@@ -1,5 +1,6 @@
 import React from 'react';
-import { Mail, ChevronDown, Github, Linkedin, User } from 'lucide-react';
+import { Mail, ChevronDown, Github, Linkedin } from 'lucide-react';
+import profileImage from '../../assets/profile.png';
 
 // Button Component
 const Button = ({ children, variant = 'primary', onClick, icon: Icon }) => {
@@ -23,9 +24,21 @@ const Button = ({ children, variant = 'primary', onClick, icon: Icon }) => {
 // Social Links Component
 const SocialLinks = () => {
   const socials = [
-    { name: 'GitHub', url: '#', Icon: Github },
-    { name: 'LinkedIn', url: '#', Icon: Linkedin },
-    { name: 'Email', url: '#', Icon: Mail },
+    { 
+      name: 'GitHub', 
+      url: 'https://github.com/limecraftt',
+      Icon: Github 
+    },
+    { 
+      name: 'LinkedIn', 
+      url: 'https://www.linkedin.com/in/mutahicharlesmaina',
+      Icon: Linkedin 
+    },
+    { 
+      name: 'Email', 
+      url: 'mailto:airdrophunter743@gmail.com',
+      Icon: Mail 
+    },
   ];
 
   return (
@@ -34,6 +47,8 @@ const SocialLinks = () => {
         <a
           key={social.name}
           href={social.url}
+          target={social.name !== 'Email' ? '_blank' : undefined}
+          rel={social.name !== 'Email' ? 'noopener noreferrer' : undefined}
           className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-800 border-2 border-gray-700 hover:border-cyan-400 hover:bg-gray-700 transition-all duration-300 group"
           aria-label={social.name}
         >
@@ -52,14 +67,19 @@ const HeroSection = () => {
 
   return (
     <div className="bg-gray-900 text-white relative">
-      {/* Header with Profile Icon */}
+      {/* Header with Profile Picture */}
       <header className="absolute top-0 left-0 right-0 z-50 px-6 py-6">
-        <button
-          className="w-12 h-12 rounded-full bg-gray-800 border-2 border-gray-700 hover:border-cyan-400 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/30"
+        <div
+          className="w-12 h-12 rounded-full bg-gray-800 border-2 border-gray-700 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/30 overflow-hidden cursor-pointer"
           aria-label="View Profile"
+          onClick={() => scrollToSection('profile')}
         >
-          <User size={22} className="text-gray-400 hover:text-cyan-400" />
-        </button>
+          <img 
+            src={profileImage} 
+            alt="Mutahi Charles Maina" 
+            className="w-full h-full object-cover"
+          />
+        </div>
       </header>
 
       {/* Hero Section */}
